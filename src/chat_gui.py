@@ -91,6 +91,7 @@ class ChatGUI:
             bg="white",
             bd=0,
             highlightthickness=0,
+            font=("Arial", 10),
         )
 
         self.assistant_segments: list[tuple[str, str]] = []
@@ -117,7 +118,9 @@ class ChatGUI:
             bg="white",
             bd=0,
             highlightthickness=0,
+            font=("Arial", 10),
         )
+        self.input_text.focus_set()
         vscroll_inp = tk.Scrollbar(inp_frame, command=self.input_text.yview)
         self.input_text.configure(yscrollcommand=vscroll_inp.set)
         vscroll_inp.pack(side=tk.RIGHT, fill=tk.Y)
@@ -144,7 +147,7 @@ class ChatGUI:
         self.next_pos: dict[str, str] = {}
 
         # ─────────────────── Bindings ───────────────────
-        root.bind("<Control-s>", lambda e: self.on_send())
+        root.bind("<Shift-Return>", lambda e: self.on_send())
         root.bind("<Control-f>", lambda e: self.open_find())
         root.bind("<Control-p>", lambda e: self.edit_system_prompt())
         root.bind("<Control-z>", lambda e: self.on_stop())

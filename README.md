@@ -37,7 +37,7 @@ CPU‑only by default for max compatibility.
 
 | Keyboard shortcuts | Action |
 |------|------|
-| `Ctrl` + `S` | send |
+| `Shift` + `Enter` | send |
 | `Ctrl` + `Z` | stop |
 | `Ctrl` + `F` | find |
 | `Ctrl` + `X` | clear chat history |
