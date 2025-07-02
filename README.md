@@ -6,9 +6,9 @@ Plug a USB drive and run a modern LLM on any PC **locally** with a double‑clic
 Local LLM Notepad is an open-source, offline plug-and-play app for running local large-language models. Drop the single bundled .exe onto a USB stick, walk up to any computer, and start chatting, brainstorming, or drafting documents. 
 
 
-![Portable One‑File Build](images/directory.png)
+![Portable One‑File Build](img/directory.png)
 
-![combined_gif](images/Combined_gif.gif)
+![combined_gif](img/Combined_gif.gif)
 
 
 # Why you’ll love it
@@ -61,7 +61,7 @@ Need another model? Use `File ▸ Select Model…` and point to a different
 | File | Link | Notes |
 |------|------|-------|
 | **Local_LLM_Notepad-portable.exe** | [Direct download (v1.0.1)](https://github.com/runzhouye/Local_LLM_Notepad/releases/tag/v1.0.1) | ~45 MB, contains everything needed to run LLM on Windows computer |
-| **gemma-3-1b-it-Q4_K_M.gguf** | [Hugging Face](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) | Fast CPU model (~0.8 GB) we recommend for first-time users. Achieves ~20 tokens/second on an i7-10750H CPU  ![HF_screenshot](images/HF_screenshot_2.png)|
+| **gemma-3-1b-it-Q4_K_M.gguf** | [Hugging Face](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) | Fast CPU model (~0.8 GB) we recommend for first-time users. Achieves ~20 tokens/second on an i7-10750H CPU  ![HF_screenshot](img/HF_screenshot_2.png)|
 | **Icon (optional)** | [Notepad icon PNG](https://upload.wikimedia.org/wikipedia/commons/c/c9/Windows_Notepad_icon.png) | Save as `Icon.png` next to the EXE and it will be used automatically |
 
 
@@ -69,7 +69,7 @@ Need another model? Use `File ▸ Select Model…` and point to a different
 
 ### Portable One‑File Build
 
-![Portable One‑File Build](images/directory.png)
+![Portable One‑File Build](img/directory.png)
 
 
 ### Automated Source Highlighting (Ctrl + click)
@@ -78,31 +78,31 @@ Every word, number you used in the prompt is bold‑underlined in the LLM answer
 
 Ctrl + click any under‑lined word to open a side window with every single prompt that contained it—great for tracing sources.
 
-![bold_text_demo](images/bold_text_demo.gif)
+![bold_text_demo](img/bold_text_demo.gif)
 
 ### Ctrl + S to Send text to LLM
 
-![CtrlS](images/CtrlS.gif)
+![CtrlS](img/CtrlS.gif)
 
 ### Ctrl + Z to stop LLM generation
 
-![CtrlZ](images/CtrlZ.gif)
+![CtrlZ](img/CtrlZ.gif)
 
 ### Ctrl + F to find in chat history
 
-![CtrlF](images/CtrlF.gif)
+![CtrlF](img/CtrlF.gif)
 
 ### Ctrl + X to clear chat history
 
-![CtrlX](images/CtrlX.gif)
+![CtrlX](img/CtrlX.gif)
 
 ### Ctrl + P to edit system prompt anytime
 
-![change_syst_prompt](images/change_syst_prompt.gif)
+![change_syst_prompt](img/change_syst_prompt.gif)
 
 ### File ▸ Save/Load chat history
 
-![Load_chat](images/Load_chat.gif)
+![Load_chat](img/Load_chat.gif)
 
 
 # (Optional) Building your own portable `.exe`
