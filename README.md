@@ -105,7 +105,7 @@ Every word, number you used in the prompt is bold‑underlined in the LLM answer
 ![Load_chat](img/Load_chat.gif)
 
 
-# (Optional) Building your own portable `.exe`
+# Run app from source code
 The process is identical to the main repository:
 `https://github.com/runzhouye/Local_LLM_Notepad` (only directory names and library versions in `requirements.txt` differ).
 
