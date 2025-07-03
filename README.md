@@ -72,35 +72,35 @@ Need another model? Use `File ▸ Select Model…` and point to a different
 ![Portable One‑File Build](img/directory.png)
 
 
-### Automated Source Highlighting (Ctrl + click)
+### Automated Source Highlighting (`Ctrl` + `click`)
 
 Every word, number you used in the prompt is bold‑underlined in the LLM answer.  
 
-Ctrl + click any under‑lined word to open a side window with every single prompt that contained it—great for tracing sources.
+`Ctrl `+` click` any under‑lined word to open a side window with every single prompt that contained it—great for tracing sources.
 
 ![bold_text_demo](img/bold_text_demo.gif)
 
-### Ctrl + S to Send text to LLM
+### `Shift` + `Return` to Send text to LLM
 
 ![CtrlS](img/CtrlS.gif)
 
-### Ctrl + Z to stop LLM generation
+### `Ctrl` + `Z` to stop LLM generation
 
 ![CtrlZ](img/CtrlZ.gif)
 
-### Ctrl + F to find in chat history
+### `Ctrl` + `F` to find in chat history
 
 ![CtrlF](img/CtrlF.gif)
 
-### Ctrl + X to clear chat history
+### `Ctrl` + `X` to clear chat history
 
 ![CtrlX](img/CtrlX.gif)
 
-### Ctrl + P to edit system prompt anytime
+### `Ctrl` + `P` to edit system prompt anytime
 
 ![change_syst_prompt](img/change_syst_prompt.gif)
 
-### File ▸ Save/Load chat history
+### `File ▸ Save/Load` chat history
 
 ![Load_chat](img/Load_chat.gif)
 
