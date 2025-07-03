@@ -82,7 +82,7 @@ Every word, number you used in the prompt is bold‑underlined in the LLM answer
 
 ### `Shift` + `Return` to Send text to LLM
 
-![CtrlS](img/CtrlS.gif)
+![CtrlS](img/ctrls.gif)
 
 ### `Ctrl` + `Z` to stop LLM generation
 
@@ -94,7 +94,7 @@ Every word, number you used in the prompt is bold‑underlined in the LLM answer
 
 ### `Ctrl` + `X` to clear chat history
 
-![CtrlX](img/CtrlX.gif)
+![CtrlX](img/ctrlx.gif)
 
 ### `Ctrl` + `P` to edit system prompt anytime
 
