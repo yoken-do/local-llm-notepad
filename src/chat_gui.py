@@ -16,7 +16,6 @@ from llm_utils import respond  # ← the only new import compared with original
 
 __all__ = ["ChatGUI", "run_app"]
 
-
 class ChatGUI:
     def __init__(self, root: tk.Tk):
         self.root = root
@@ -32,7 +31,17 @@ class ChatGUI:
                 print(f"Icon load failed: {ex}")
 
         # ─────────────────── State ───────────────────
-        self.system_prompt: str = "You are a helpful assistant."
+
+        if os.path.exists("config.json"):
+            with open(file="config.json", mode="r", encoding="utf-8") as f:
+                settings = json.load(f)
+                self.model_path = settings["model_path"]
+                self.system_prompt = settings["system_prompt"]
+                if not os.path.exists(self.model_path):
+                    self.model_path = "gemma-3-1b-it-Q4_K_M.gguf"
+        else:
+            self.system_prompt: str = "You are a helpful assistant."
+            self.model_path = "gemma-3-1b-it-Q4_K_M.gguf"
 
         # ─────────────────── Menus ───────────────────
         menubar = tk.Menu(root)
@@ -41,8 +50,9 @@ class ChatGUI:
         file_menu.add_command(label="Save Chat...", command=self.save_chat)
         file_menu.add_command(label="Load Chat...", command=self.load_chat)
         file_menu.add_separator()
-        file_menu.add_command(label="Exit", command=root.quit)
+        file_menu.add_command(label="Exit", command=self.exit_root)
         menubar.add_cascade(label="File", menu=file_menu)
+        root.protocol("WM_DELETE_WINDOW", self.exit_root)
 
         edit_menu = tk.Menu(menubar, tearoff=0)
         edit_menu.add_command(label="Send", accelerator="Ctrl+S", command=self.on_send)
@@ -136,7 +146,6 @@ class ChatGUI:
             r"(\|[^\n]+\|\n\|[ \-:|]+\|\n(?:\|[^\n]+\|\n?)*)",
             re.MULTILINE,
         )
-        self.model_path = "gemma-3-1b-it-Q4_K_M.gguf"
         self.search_start = "1.0"
 
         # Window for user prompts (created on first ctrl-click)
@@ -159,6 +168,16 @@ class ChatGUI:
         self.history_text.tag_bind(
             "user_word", "<Control-Button-1>", self._on_ctrl_click_user_word
         )
+
+    def exit_root(self):
+        settings = {
+            "model_path": self.model_path,
+            "system_prompt": self.system_prompt
+        }
+        print(settings)
+        with open(file="config.json", mode="w", encoding="utf-8") as f:
+            json.dump(settings, f, ensure_ascii=False, indent=2)
+        self.root.quit()
 
     def save_chat(self):
         if not self.history_data:

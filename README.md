@@ -130,19 +130,8 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 6. Go to `src` directory and run
+### 6. Go to `src` directory, add `gemma-3-1b-it-Q4_K_M.gguf` (the default model) and run
 ```bash
 cd src
 main.py
 ```
-
-### 7. Bundle everything (not work)
-```bash
-pyinstaller --onefile --noconsole --additional-hooks-dir=. main.py
-```
-
-
-# Known Issues
-1. the project does not compile correctly or returns an error after compilation
-
-
