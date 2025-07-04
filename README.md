@@ -41,27 +41,18 @@ The process is identical to the [`main`](https://github.com/runzhouye/Local_LLM_
 
 ### 1. Clone repository
 ```bash
-git clone https://github.com/yoken-do/local-llm-notepad.git
+git clone -b uv --single-branch https://github.com/yoken-do/local-llm-notepad.git
 ```
 ### 2. Go to the directory
 ```bash
 cd local-llm-notepad.
 ```
-### 3. Create environment
+### 3. Synchronizing dependencies
 ```bash
-python -m venv .venv
+uv sync
 ```
-### 4. Activate environment
-```bash
-.venv\Scripts\activate
-```
-### 5. Install dependecies
-```bash
-pip install -r requirements.txt
-```
-
-### 6. Go to `src` directory, add [`gemma-3-1b-it-Q4_K_M.gguf`](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) (the default model) and run
+### 4. Go to `src` directory, add [`gemma-3-1b-it-Q4_K_M.gguf`](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) (the default model) and run
 ```bash
 cd src
-main.py
+uv run main.py
 ```
