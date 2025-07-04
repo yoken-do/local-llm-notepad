@@ -37,8 +37,7 @@ CPU‑only by default for max compatibility.
 
 
 # Run app from source code
-The process is identical to the main repository:
-`https://github.com/runzhouye/Local_LLM_Notepad` (only directory names and library versions in `requirements.txt` differ).
+The process is identical to the [`main`](https://github.com/runzhouye/Local_LLM_Notepad) repository (only directory names and library versions in `requirements.txt` differ).
 
 ### 1. Clone repository
 ```bash
