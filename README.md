@@ -39,7 +39,7 @@ CPU‑only by default for max compatibility.
 # Run app from source code
 The process is identical to the [`main`](https://github.com/runzhouye/Local_LLM_Notepad) repository (only directory names and library versions in `requirements.txt` differ).
 
-If you're using `uv`, switch to the [`branch`].(https://github.com/yoken-do/local-llm-notepad/tree/uv)
+If you're using `uv`, switch to the [`branch`](https://github.com/yoken-do/local-llm-notepad/tree/uv)
 
 ### 1. Clone repository
 ```bash
