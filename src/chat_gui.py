@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import queue
 import re
 import threading
@@ -23,19 +24,10 @@ class ChatGUI:
         root.title("local-llm-notepad")
         root.configure(bg="white")
 
-        # if os.path.exists(icon_path):
-        #     try:
-        #         icon = tk.PhotoImage(file=icon_path)
-        #         root.iconphoto(True, icon)
-        #     except Exception as ex:
-        #         print(f"Icon load failed: {ex}")
-
         # ─────────────────── State ───────────────────
         self.settings = load_settings()
         self.model_path = self.settings["model"]["path"]
         self.system_prompt = self.settings["model"]["prompt"]
-
-        # print(self.settings)
 
         # ─────────────────── Menus ───────────────────
         menubar = tk.Menu(root)
@@ -58,17 +50,9 @@ class ChatGUI:
         edit_menu.add_command(label="Send", accelerator=f"{self.settings["bindings"]['send']}", command=self.on_send)
         edit_menu.add_command(label="Stop Generation", accelerator=f"{self.settings["bindings"]['stop-generation']}", command=self.on_stop)
         edit_menu.add_separator()
-        # edit_menu.add_command(label="Edit System Prompt...", accelerator="Ctrl+P", command=self.edit_system_prompt)
-        # edit_menu.add_separator()
         edit_menu.add_command(label="Find...", accelerator=f"{self.settings["bindings"]['find']}", command=self.open_find)
         edit_menu.add_command(label="Clear", accelerator=f"{self.settings["bindings"]['clear']}", command=self.on_clear)
-        # edit_menu.add_separator()
-        # edit_menu.add_command(label="Toggle Bold/Underline", accelerator="Ctrl+D", command=self.toggle_word_style)
         menubar.add_cascade(label="Edit", menu=edit_menu)
-
-        # format_menu = tk.Menu(menubar, tearoff=0)
-        # format_menu.add_command(label="Toggle Word Wrap", command=self.toggle_wrap)
-        # menubar.add_cascade(label="Format", menu=format_menu)
 
         view_menu = tk.Menu(menubar, tearoff=0)
         view_menu.add_command(label="Zoom In", accelerator="Control +", command=self.zoom_in)
@@ -328,11 +312,6 @@ class ChatGUI:
             self.model_path = path
             messagebox.showinfo("Model Selected", f"Model set to:\n{path}")
 
-    # def toggle_wrap(self):
-    #     for w in (self.input_text, self.history_text):
-    #         cur = w.cget("wrap")
-    #         w.config(wrap=tk.NONE if cur == tk.WORD else tk.WORD)
-
     def zoom_in(self):
         for w in (self.input_text, self.history_text):
             f = tkfont.Font(font=w.cget("font"))
@@ -560,16 +539,6 @@ class ChatGUI:
                 self.history_text.tag_add("user_word", idx, end_idx)
                 idx = end_idx
 
-    # ─── toggle from menu or Ctrl+D ─────────────────────────────────
-    # def toggle_word_style(self):
-    #     self.style_on = not self.style_on
-    #     self._apply_word_style()
-
-    #     # refresh highlights just for assistant segments
-    #     self.history_text.tag_remove("user_word", "1.0", tk.END)
-    #     for start, end in self.assistant_segments:
-    #         self._highlight_user_words(start, end)
-
     # ─── apply current style to the tag ─────────────────────────────
     def _apply_word_style(self):
         if self.style_on:
@@ -578,98 +547,6 @@ class ChatGUI:
             self.history_text.tag_config(
                 "user_word", font=self.history_text.cget("font"), underline=False
             )
-
-    # def _refresh_bold_font(self):
-    #     """Match bold-underline font size to history_text current size."""
-    #     base = tkfont.Font(font=self.history_text.cget("font"))
-    #     self.bold_font.configure(size=base.cget("size"))  # keep weight/underline
-    #     if self.style_on:  # tag might be off
-    #         self.history_text.tag_config("user_word", font=self.bold_font)
-
-    # ─────────────────── Ctrl-click handler ───────────────────
-    # def _on_ctrl_click_user_word(self, event):
-    #     index = self.history_text.index(f"@{event.x},{event.y}")
-    #     clicked = self.history_text.get(f"{index} wordstart", f"{index} wordend").strip()
-    #     if clicked:
-    #         self._show_user_prompts_window(clicked.lower())
-
-    # def _show_user_prompts_window(self, word: str):
-    #     """Highlight *all* occurrences of <word> in yellow, but scroll to the
-    #     next one (cycling) each time the green word is Ctrl-clicked."""
-    #     # ── create the window & widgets on first use ──
-    #     if self.user_prompts_win is None or not self.user_prompts_win.winfo_exists():
-    #         self.user_prompts_win = tk.Toplevel(self.root)
-    #         self.user_prompts_win.title("User Prompts")
-
-    #         # match main-window look
-    #         self.user_prompts_win.configure(bg="white", bd=0, highlightthickness=0)
-
-    #         self.user_prompts_text = tk.Text(
-    #             self.user_prompts_win,
-    #             wrap=tk.WORD,
-    #             state="disabled",
-    #             bg="white",  # same white background
-    #             bd=0,  # no 3-D border
-    #             highlightthickness=0,  # no focus ring
-    #         )
-    #         self.user_prompts_text.tag_config("clicked_word", background="yellow")
-    #         self.user_prompts_text.tag_config("focus_word", background="gold")
-
-    #         vscroll = tk.Scrollbar(
-    #             self.user_prompts_win,
-    #             command=self.user_prompts_text.yview,
-    #             bd=0,
-    #             relief="flat",
-    #             highlightthickness=0,
-    #         )
-    #         self.user_prompts_text.configure(yscrollcommand=vscroll.set)
-
-    #         self.user_prompts_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-    #         vscroll.pack(side=tk.RIGHT, fill=tk.Y)
-
-    #         self._center_window(self.user_prompts_win)  # keep existing centering
-
-    #     # ── (re)populate the text box ──
-    #     combined = "\n".join(f"{i+1:>2}. {d['user']}" for i, d in enumerate(self.history_data)) + "\n"
-    #     self.user_prompts_text.config(state="normal")
-    #     self.user_prompts_text.delete("1.0", tk.END)
-    #     self.user_prompts_text.insert("1.0", combined)
-
-    #     # ── clear old tags, then tag *all* occurrences ──
-    #     self.user_prompts_text.tag_remove("clicked_word", "1.0", tk.END)
-    #     self.user_prompts_text.tag_remove("focus_word", "1.0", tk.END)
-
-    #     pattern = rf"\m{re.escape(word)}\M"
-    #     idx = "1.0"
-    #     all_positions: list[str] = []
-    #     while True:
-    #         idx = self.user_prompts_text.search(pattern, idx, tk.END, nocase=True, regexp=True)
-    #         if not idx:
-    #             break
-    #         end_idx = f"{idx}+{len(word)}c"
-    #         self.user_prompts_text.tag_add("clicked_word", idx, end_idx)
-    #         all_positions.append(idx)
-    #         idx = end_idx
-
-    #     if not all_positions:
-    #         # nothing found: reset pointer and return
-    #         self.next_pos[word] = 0
-    #         self.user_prompts_text.config(state="disabled")
-    #         self.user_prompts_win.lift()
-    #         return
-
-    #     # ── figure out which occurrence to focus on this click ──
-    #     curr_index = self.next_pos.get(word, 0) % len(all_positions)
-    #     focus_pos = all_positions[curr_index]
-    #     focus_end = f"{focus_pos}+{len(word)}c"
-    #     self.user_prompts_text.tag_add("focus_word", focus_pos, focus_end)
-    #     self.user_prompts_text.see(focus_pos)
-
-    #     # next time, advance
-    #     self.next_pos[word] = (curr_index + 1) % len(all_positions)
-
-    #     self.user_prompts_text.config(state="disabled")
-    #     self.user_prompts_win.lift()
 
     def _center_window(self, win: tk.Toplevel):
         """Position <win> in the center of the root window."""

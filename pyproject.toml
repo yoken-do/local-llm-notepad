@@ -7,4 +7,5 @@ requires-python = ">=3.13"
 dependencies = [
     "llama-cpp-agent>=0.2.35",
     "llama-cpp-python>=0.3.10",
+    "nuitka>=2.7.11",
 ]

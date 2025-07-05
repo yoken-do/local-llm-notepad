@@ -51,8 +51,23 @@ cd local-llm-notepad.
 ```bash
 uv sync
 ```
-### 4. Go to `src` directory, add [`gemma-3-1b-it-Q4_K_M.gguf`](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) (the default model) and run
+
+### 4. Activate `.venv`
+```bash
+.venv\Scripts\activate
+```
+
+### 5. Go to src
 ```bash
 cd src
-uv run main.py
+```
+
+### 6. Compile
+```bash
+nuitka --standalone --enable-plugin=tk-inter --windows-console-mode=disable --onefile --output-filename=local-llm-notepad.exe main.py
+```
+
+### 8. Add [`gemma-3-1b-it-Q4_K_M.gguf`](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) (the default model) and run app
+```bash
+local-llm-notepad.exe
 ```
