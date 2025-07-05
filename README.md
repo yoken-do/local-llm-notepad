@@ -6,6 +6,12 @@
 
 ![main_img](img/main.gif)
 
+| File | Link | Notes |
+|-------|------|------|
+| `local-llm-notepad.exe` | [Download](https://github.com/yoken-do/local-llm-notepad/releases/tag/v1.0.2) | ~25 MB, contains everything needed to run LLM on Windows computer |
+| `gemma-3-1b-it-Q4_K_M.gguf` | [Download](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) | Fast CPU model (~0.8 GB) we recommend for first-time users. Achieves ~20 tokens/second on an i7-10750H CPU |
+
+
 # Why you’ll love it
 
 ## 🔌 Portable
