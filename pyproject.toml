@@ -1,0 +1,11 @@
+[project]
+name = "local-llm-notepad"
+version = "0.1.0"
+description = "local-llm-notepad is an open-source, offline plug-and-play app for running local large-language models."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "llama-cpp-agent>=0.2.35",
+    "llama-cpp-python>=0.3.10",
+    "nuitka>=2.7.11",
+]
