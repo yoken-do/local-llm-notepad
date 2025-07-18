@@ -70,18 +70,18 @@ python -m venv .venv
 ```bash
 .venv\Scripts\activate
 ```
-### 5. Install dependecies and go to `src` directory
+### 4. Install dependecies and go to `src` directory
 ```bash
 pip install -r requirements.txt
 cd src
 ```
 
-### 6. Compile
+### 5. Compile
 ```bash
 nuitka --standalone --enable-plugin=tk-inter --windows-console-mode=disable --onefile --output-filename=local-llm-notepad.exe main.py
 ```
 
-### 7. Add [`gemma-3-1b-it-Q4_K_M.gguf`](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) (the default model) and run app
+### 6. Add [`gemma-3-1b-it-Q4_K_M.gguf`](https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/tree/main) (the default model) and run app
 ```bash
 local-llm-notepad.exe
 ```
